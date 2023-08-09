@@ -5,43 +5,52 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Shoot;
+import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
 
+  private Shooter shooter;
+  private OI oi;
+
   @Override
   public void robotInit() {
-
+    shooter = Shooter.getInstance();
+    shooter.configureDashboard();
+    shooter.resetEncoders();
+//        oi = OI.getInstance();
   }
+
 
   @Override
   public void robotPeriodic() {
+    shooter.periodic();
+    Shoot.periodic();
     CommandScheduler.getInstance().run();
   }
 
   @Override
   public void disabledInit() {
-
+    CommandScheduler.getInstance().cancelAll();
   }
 
   @Override
   public void disabledPeriodic() {
-
   }
 
   @Override
   public void autonomousInit() {
-
   }
+
 
   @Override
   public void autonomousPeriodic() {
-
   }
 
   @Override
   public void teleopInit() {
-
   }
 
   @Override
@@ -56,16 +65,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
-
   }
 
   @Override
   public void simulationInit() {
-
   }
 
   @Override
   public void simulationPeriodic() {
-
   }
 }
