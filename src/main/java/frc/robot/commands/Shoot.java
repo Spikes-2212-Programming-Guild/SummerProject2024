@@ -3,6 +3,7 @@ package frc.robot.commands;
 import com.spikes2212.dashboard.RootNamespace;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
@@ -16,12 +17,17 @@ public class Shoot extends CommandBase {
     private static final Supplier<Double> kD = namespace.addConstantDouble("kD", 0);
     private final PIDController pidController;
 
-    private static final  Supplier<Double> kS = namespace.addConstantDouble("kS", 0);
+    private static final Supplier<Double> kS = namespace.addConstantDouble("kS", 0);
     private static final Supplier<Double> kV = namespace.addConstantDouble("kV", 0);
-    private final SimpleMotorFeedforward feedForward;
+    private SimpleMotorFeedforward feedForward;
+
+    private static final Supplier<Double> WAIT_TIME = namespace.addConstantDouble("WAIT_TIME", 3);
+    private static final Supplier<Double> TOLERANCE = namespace.addConstantDouble("TOLERANCE", 0.5);
+    private double lastTimeNotOnTarget;
 
     private Shooter shooter;
-    private static Supplier<Double> rotationsPerSecond = namespace.addConstantDouble("rotations per second", 0);
+    private static Supplier<Double> rotationsPerSecond = namespace.addConstantDouble(
+            "rotations per second", 0);
 
     public Shoot(Shooter shooter) {
         this.shooter = shooter;
@@ -36,9 +42,21 @@ public class Shoot extends CommandBase {
 
     @Override
     public void execute() {
+        pidController.setTolerance(TOLERANCE.get());
         pidController.setPID(kP.get(), kI.get(), kD.get());
+        feedForward = new SimpleMotorFeedforward(kS.get(), kV.get());
         shooter.setSpeed((pidController.calculate(shooter.getEncoder().getVelocity(),
                 rotationsPerSecond.get())) + feedForward.calculate(rotationsPerSecond.get()));
+    }
+
+    @Override
+    public boolean isFinished() {
+        if (!pidController.atSetpoint()) {
+            lastTimeNotOnTarget = Timer.getFPGATimestamp();
+        } else {
+            return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= WAIT_TIME.get();
+        }
+        return false;
     }
 
     @Override

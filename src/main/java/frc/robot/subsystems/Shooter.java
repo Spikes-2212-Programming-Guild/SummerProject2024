@@ -3,10 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
-import com.spikes2212.command.DashboardedSubsystem;
 import com.spikes2212.dashboard.RootNamespace;
-import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.commands.Shoot;
@@ -37,14 +34,12 @@ public class Shooter extends SubsystemBase {
         encoder.setVelocityConversionFactor(GEAR_RATIO/60);
     }
 
-    public RelativeEncoder getEncoder() {
-
-        return this.encoder;
-    }
+    public RelativeEncoder getEncoder() {return this.encoder;}
 
     @Override
     public void periodic() {
         namespace.update();
+
     }
 
     public void setSpeed(double speed) {
