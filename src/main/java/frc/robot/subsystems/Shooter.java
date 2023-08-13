@@ -17,9 +17,10 @@ public class Shooter extends SubsystemBase {
 
     public static final double GEAR_RATIO = 0.1944;
 
-    private static Shooter instance;
     private final CANSparkMax motor;
     private final RelativeEncoder encoder;
+
+    private static Shooter instance;
 
     public static Shooter getInstance() {
         if (instance == null) {
