@@ -54,6 +54,10 @@ public class Shooter extends SubsystemBase {
         encoder.setPosition(0);
     }
 
+    public double getVelocity(){
+        return encoder.getVelocity();
+    }
+
     public void configureDashboard() {
         namespace.putData("pew pew", new Shoot(this));
         namespace.putNumber("rotations", encoder::getPosition);
