@@ -64,5 +64,4 @@ public class Shooter extends SubsystemBase {
         namespace.putNumber("rotations", encoder::getPosition);
         namespace.putNumber("velocity", encoder::getVelocity);
     }
-
 }
