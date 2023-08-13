@@ -38,7 +38,7 @@ public class Shoot extends CommandBase {
     public void execute() {
         pidController.setPID(kP.get(), kI.get(), kD.get());
         shooter.setSpeed((pidController.calculate(shooter.getEncoder().getVelocity(),
-                rotationsPerSecond.get())) * 0.02 + feedForward.calculate(rotationsPerSecond.get()));
+                rotationsPerSecond.get())) + feedForward.calculate(rotationsPerSecond.get()));
     }
 
     @Override
