@@ -42,9 +42,11 @@ public class Shooter extends SubsystemBase {
 
     }
 
+    //Speed is in units of seconds
     public void setSpeed(double speed) {
         motor.set(speed);
     }
+
 
     public void stop() {
         motor.stopMotor();
