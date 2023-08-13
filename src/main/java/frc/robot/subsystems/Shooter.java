@@ -42,7 +42,6 @@ public class Shooter extends SubsystemBase {
         return this.encoder;
     }
 
-
     @Override
     public void periodic() {
         namespace.update();
@@ -67,4 +66,3 @@ public class Shooter extends SubsystemBase {
     }
 
 }
-
