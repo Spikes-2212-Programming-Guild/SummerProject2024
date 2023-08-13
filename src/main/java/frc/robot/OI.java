@@ -9,19 +9,4 @@ import frc.robot.subsystems.Shooter;
 
 public class OI {
 
-    private static OI instance;
-    private Shooter shooter;
-    private final Joystick joystick  = new Joystick(0);
-
-    public static OI getInstance() {
-        if (instance == null) {
-            instance = new OI(Shooter.getInstance());
-        }
-        return instance;
-    }
-    private OI(Shooter shooter) {
-        this.shooter = shooter;
-        JoystickButton trigger = new JoystickButton(joystick, 1);
-//        trigger.whileTrue(new Shoot(shooter));
-    }
 }
