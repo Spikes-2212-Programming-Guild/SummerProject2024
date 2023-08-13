@@ -38,12 +38,10 @@ public class Shooter extends SubsystemBase {
     }
 
     public RelativeEncoder getEncoder() {
+
         return this.encoder;
     }
 
-    public CANSparkMax getMotor() {
-        return this.motor;
-    }
 
     @Override
     public void periodic() {
