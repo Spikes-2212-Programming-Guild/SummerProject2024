@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public class Shoot extends CommandBase {
 
-    public static RootNamespace namespace = new RootNamespace("shoot");
+    public static final RootNamespace namespace = new RootNamespace("shoot");
     private static final Supplier<Double> kP = namespace.addConstantDouble("kP", 0.05);
     private static final Supplier<Double> kI = namespace.addConstantDouble("kI", 0);
     private static final Supplier<Double> kD = namespace.addConstantDouble("kD", 0);
