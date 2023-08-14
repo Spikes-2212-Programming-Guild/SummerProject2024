@@ -12,9 +12,6 @@ import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
 
-  private Shooter shooter;
-  private OI oi;
-
   @Override
   public void robotInit() {
     shooter = Shooter.getInstance();
