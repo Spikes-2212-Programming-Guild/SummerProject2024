@@ -34,8 +34,6 @@ public class Shooter extends SubsystemBase {
         encoder.setVelocityConversionFactor(GEAR_RATIO/60);
     }
 
-    public RelativeEncoder getEncoder() {return this.encoder;}
-
     @Override
     public void periodic() {
         namespace.update();

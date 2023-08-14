@@ -25,8 +25,8 @@ public class Shoot extends CommandBase {
     private static final Supplier<Double> TOLERANCE = namespace.addConstantDouble("TOLERANCE", 0.5);
     private double lastTimeNotOnTarget;
 
-    private Shooter shooter;
-    private static Supplier<Double> rotationsPerSecond = namespace.addConstantDouble(
+    private final Shooter shooter;
+    private final static Supplier<Double> rotationsPerSecond = namespace.addConstantDouble(
             "rotations per second", 0);
 
     public Shoot(Shooter shooter) {
@@ -45,7 +45,7 @@ public class Shoot extends CommandBase {
         pidController.setTolerance(TOLERANCE.get());
         pidController.setPID(kP.get(), kI.get(), kD.get());
         feedForward = new SimpleMotorFeedforward(kS.get(), kV.get());
-        shooter.setSpeed((pidController.calculate(shooter.getEncoder().getVelocity(),
+        shooter.setSpeed((pidController.calculate(shooter.getVelocity(),
                 rotationsPerSecond.get())) + feedForward.calculate(rotationsPerSecond.get()));
     }
 
