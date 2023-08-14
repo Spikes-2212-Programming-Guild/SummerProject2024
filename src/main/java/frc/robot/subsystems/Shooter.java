@@ -12,7 +12,7 @@ public class Shooter extends SubsystemBase {
 
     public static RootNamespace namespace = new RootNamespace("shooter");
 
-    public static final double GEAR_RATIO = 1/2.21;
+    public static final double GEAR_RATIO = 1 / 2.21;
 
     private final CANSparkMax motor;
     private final RelativeEncoder encoder;
@@ -31,7 +31,7 @@ public class Shooter extends SubsystemBase {
         this.motor = motor;
         this.encoder = motor.getEncoder();
         encoder.setPositionConversionFactor(GEAR_RATIO);
-        encoder.setVelocityConversionFactor(GEAR_RATIO/60);
+        encoder.setVelocityConversionFactor(GEAR_RATIO / 60);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Shooter extends SubsystemBase {
         encoder.setPosition(0);
     }
 
-    public double getVelocity(){
+    public double getVelocity() {
         return encoder.getVelocity();
     }
 
