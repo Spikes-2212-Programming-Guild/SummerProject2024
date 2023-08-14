@@ -53,10 +53,8 @@ public class Shoot extends CommandBase {
     public boolean isFinished() {
         if (!pidController.atSetpoint()) {
             lastTimeNotOnTarget = Timer.getFPGATimestamp();
-        } else {
-            return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= WAIT_TIME.get();
         }
-        return false;
+        return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= WAIT_TIME.get();
     }
 
     @Override
