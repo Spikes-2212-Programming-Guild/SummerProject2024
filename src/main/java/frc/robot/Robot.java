@@ -14,12 +14,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    shooter = Shooter.getInstance();
-    shooter.configureDashboard();
-    shooter.resetEncoders();
-//        oi = OI.getInstance();
   }
-
 
   @Override
   public void robotPeriodic() {
