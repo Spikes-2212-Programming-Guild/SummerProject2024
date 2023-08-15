@@ -19,7 +19,7 @@ public class Shooter extends SubsystemBase {
 
     private static Shooter instance;
 
-    public static Shooter getInstance() {
+    public final static Shooter getInstance() {
         if (instance == null) {
             instance = new Shooter(new CANSparkMax(RobotMap.CAN.SHOOTER_SPARK_MAX,
                     CANSparkMaxLowLevel.MotorType.kBrushless));
