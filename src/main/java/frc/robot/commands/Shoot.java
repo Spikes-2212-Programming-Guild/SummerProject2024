@@ -30,6 +30,7 @@ public class Shoot extends CommandBase {
             "rotations per second", 0);
 
     public Shoot(Shooter shooter) {
+        this.lastTimeNotOnTarget = 0;
         this.shooter = shooter;
         addRequirements(shooter);
         pidController = new PIDController(kP.get(), kI.get(), kD.get());

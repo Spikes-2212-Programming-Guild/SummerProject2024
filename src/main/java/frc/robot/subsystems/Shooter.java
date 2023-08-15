@@ -27,6 +27,8 @@ public class Shooter extends SubsystemBase {
         return instance;
     }
 
+
+
     private Shooter(CANSparkMax motor) {
         this.motor = motor;
         this.encoder = motor.getEncoder();
