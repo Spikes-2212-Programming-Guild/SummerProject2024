@@ -38,7 +38,6 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         namespace.update();
-
     }
 
     //Speed is in units of voltage from 0 to 1
