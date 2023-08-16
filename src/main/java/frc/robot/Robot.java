@@ -10,8 +10,7 @@ import frc.robot.commands.Shoot;
 import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
-
-  Shooter shooter;
+  private Shooter shooter;
 
   @Override
   public void robotInit() {
