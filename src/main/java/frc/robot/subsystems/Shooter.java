@@ -27,10 +27,9 @@ public class Shooter extends SubsystemBase {
         return instance;
     }
 
-
-
     private Shooter(CANSparkMax motor) {
         this.motor = motor;
+        motor.restoreFactoryDefaults();
         this.encoder = motor.getEncoder();
         encoder.setPositionConversionFactor(GEAR_RATIO);
         encoder.setVelocityConversionFactor(GEAR_RATIO / 60);
