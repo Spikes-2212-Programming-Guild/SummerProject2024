@@ -26,7 +26,7 @@ public class Shoot extends CommandBase {
     private double lastTimeNotOnTarget;
 
     private final Shooter shooter;
-    private final static Supplier<Double> rotationsPerSecond = namespace.addConstantDouble(
+    private static final Supplier<Double> rotationsPerSecond = namespace.addConstantDouble(
             "rotations per second", 0);
 
     public Shoot(Shooter shooter) {
