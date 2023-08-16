@@ -45,7 +45,6 @@ public class Shoot extends CommandBase {
     public void execute() {
         pidController.setTolerance(TOLERANCE.get());
         pidController.setPID(kP.get(), kI.get(), kD.get());
-        feedForward = new SimpleMotorFeedforward(kS.get(), kV.get());
         shooter.setSpeed((pidController.calculate(shooter.getVelocity(),
                 rotationsPerSecond.get())) + feedForward.calculate(rotationsPerSecond.get()));
     }
