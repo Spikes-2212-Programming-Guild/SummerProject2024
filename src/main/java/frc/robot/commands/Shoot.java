@@ -19,7 +19,7 @@ public class Shoot extends CommandBase {
 
     private static final Supplier<Double> kS = namespace.addConstantDouble("kS", 0);
     private static final Supplier<Double> kV = namespace.addConstantDouble("kV", 0);
-    private SimpleMotorFeedforward feedForward;
+    private final SimpleMotorFeedforward feedForward;
 
     private static final Supplier<Double> WAIT_TIME = namespace.addConstantDouble("wait time", 3);
     private static final Supplier<Double> TOLERANCE = namespace.addConstantDouble("tolerance", 0.5);
