@@ -10,62 +10,63 @@ import frc.robot.commands.Shoot;
 import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
-  private Shooter shooter;
 
-  @Override
-  public void robotInit() {
-    shooter = Shooter.getInstance();
-    shooter.resetEncoders();
-    shooter.configureDashboard();
-  }
+    private Shooter shooter;
 
-  @Override
-  public void robotPeriodic() {
-    shooter.periodic();
-    Shoot.periodic();
-    CommandScheduler.getInstance().run();
-  }
+    @Override
+    public void robotInit() {
+        shooter = Shooter.getInstance();
+        shooter.resetEncoders();
+        shooter.configureDashboard();
+    }
 
-  @Override
-  public void disabledInit() {
-    CommandScheduler.getInstance().cancelAll();
-  }
+    @Override
+    public void robotPeriodic() {
+        shooter.periodic();
+        Shoot.periodic();
+        CommandScheduler.getInstance().run();
+    }
 
-  @Override
-  public void disabledPeriodic() {
-  }
+    @Override
+    public void disabledInit() {
+        CommandScheduler.getInstance().cancelAll();
+    }
 
-  @Override
-  public void autonomousInit() {
-  }
+    @Override
+    public void disabledPeriodic() {
+    }
 
-  @Override
-  public void autonomousPeriodic() {
-  }
+    @Override
+    public void autonomousInit() {
+    }
 
-  @Override
-  public void teleopInit() {
-  }
+    @Override
+    public void autonomousPeriodic() {
+    }
 
-  @Override
-  public void teleopPeriodic() {
+    @Override
+    public void teleopInit() {
+    }
 
-  }
+    @Override
+    public void teleopPeriodic() {
 
-  @Override
-  public void testInit() {
-    CommandScheduler.getInstance().cancelAll();
-  }
+    }
 
-  @Override
-  public void testPeriodic() {
-  }
+    @Override
+    public void testInit() {
+        CommandScheduler.getInstance().cancelAll();
+    }
 
-  @Override
-  public void simulationInit() {
-  }
+    @Override
+    public void testPeriodic() {
+    }
 
-  @Override
-  public void simulationPeriodic() {
-  }
+    @Override
+    public void simulationInit() {
+    }
+
+    @Override
+    public void simulationPeriodic() {
+    }
 }
