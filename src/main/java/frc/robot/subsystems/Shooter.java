@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
         return instance;
     }
 
-    public static Shooter setEncoder() {
+    public static void setEncoder() {
         encoder.setPositionConversionFactor(GEAR_RATIO);
         encoder.setVelocityConversionFactor(VELOCITY_CONVERSION_FACTOR);
     }
