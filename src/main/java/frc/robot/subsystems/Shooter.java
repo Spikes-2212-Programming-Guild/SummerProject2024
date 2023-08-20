@@ -15,7 +15,7 @@ public class Shooter extends SubsystemBase {
     public static final double GEAR_RATIO = 1 / 2.21;
     public static final double VELOCITY_CONVERSION_FACTOR = GEAR_RATIO / 60;
     private final CANSparkMax motor;
-    private final RelativeEncoder encoder;
+    private static RelativeEncoder encoder;
 
     private static Shooter instance;
 
@@ -27,12 +27,16 @@ public class Shooter extends SubsystemBase {
         return instance;
     }
 
+    public static Shooter setEncoder() {
+        encoder.setPositionConversionFactor(GEAR_RATIO);
+        encoder.setVelocityConversionFactor(VELOCITY_CONVERSION_FACTOR);
+    }
+
     private Shooter(CANSparkMax motor) {
         this.motor = motor;
         motor.restoreFactoryDefaults();
         this.encoder = motor.getEncoder();
-        encoder.setPositionConversionFactor(GEAR_RATIO);
-        encoder.setVelocityConversionFactor(VELOCITY_CONVERSION_FACTOR);
+        setEncoder();
     }
 
     @Override
