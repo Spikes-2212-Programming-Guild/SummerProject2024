@@ -13,7 +13,7 @@ public class Shooter extends SubsystemBase {
     public static RootNamespace namespace = new RootNamespace("shooter");
 
     public static final double GEAR_RATIO = 1 / 2.21;
-    public static final double VELOCITY_CONVERSION_FACTOR = GEAR_RATIO/60;
+    public static final double VELOCITY_CONVERSION_FACTOR = GEAR_RATIO / 60;
     private final CANSparkMax motor;
     private final RelativeEncoder encoder;
 
