@@ -45,7 +45,6 @@ public class Shooter extends SubsystemBase {
         motor.set(speed);
     }
 
-
     public void stop() {
         motor.stopMotor();
     }
