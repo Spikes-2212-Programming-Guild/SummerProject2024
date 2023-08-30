@@ -21,6 +21,8 @@ public class Shoot extends CommandBase {
 
     private static final Supplier<Double> kS = namespace.addConstantDouble("kS", 0);
     private static final Supplier<Double> kV = namespace.addConstantDouble("kV", 0);
+    private static final Supplier<Double> kA = namespace.addConstantDouble("kA", 0);
+
     private final FeedForwardController feedForward;
 
     private static final Supplier<Double> WAIT_TIME = namespace.addConstantDouble("wait time", 3);
@@ -36,7 +38,7 @@ public class Shoot extends CommandBase {
         this.shooter = shooter;
         addRequirements(shooter);
         pidController = new PIDController(kP.get(), kI.get(), kD.get());
-        feedForward = new FeedForwardController(kS.get(), kV.get(), 0, FeedForwardController.DEFAULT_PERIOD);
+        feedForward = new FeedForwardController(kS.get(), kV.get(), kA.get(), FeedForwardController.DEFAULT_PERIOD);
     }
 
     public static void periodic() {
