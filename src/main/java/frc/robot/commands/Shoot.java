@@ -22,7 +22,6 @@ public class Shoot extends CommandBase {
     private static final Supplier<Double> kS = namespace.addConstantDouble("kS", 0);
     private static final Supplier<Double> kV = namespace.addConstantDouble("kV", 0);
     private static final Supplier<Double> kA = namespace.addConstantDouble("kA", 0);
-
     private final FeedForwardController feedForward;
 
     private static final Supplier<Double> WAIT_TIME = namespace.addConstantDouble("wait time", 3);
