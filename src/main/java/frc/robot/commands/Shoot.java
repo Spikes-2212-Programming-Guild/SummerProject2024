@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import com.spikes2212.control.FeedForwardController;
+import com.spikes2212.control.FeedForwardSettings;
 import com.spikes2212.dashboard.RootNamespace;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -19,7 +21,7 @@ public class Shoot extends CommandBase {
 
     private static final Supplier<Double> kS = namespace.addConstantDouble("kS", 0);
     private static final Supplier<Double> kV = namespace.addConstantDouble("kV", 0);
-    private final SimpleMotorFeedforward feedForward;
+    private final FeedForwardController feedForward;
 
     private static final Supplier<Double> WAIT_TIME = namespace.addConstantDouble("wait time", 3);
     private static final Supplier<Double> TOLERANCE = namespace.addConstantDouble("tolerance", 0.5);
@@ -34,7 +36,7 @@ public class Shoot extends CommandBase {
         this.shooter = shooter;
         addRequirements(shooter);
         pidController = new PIDController(kP.get(), kI.get(), kD.get());
-        feedForward = new SimpleMotorFeedforward(kS.get(), kV.get());
+        feedForward = new FeedForwardController(kS.get(), kV.get(), 0, FeedForwardController.DEFAULT_PERIOD);
     }
 
     public static void periodic() {
@@ -45,6 +47,7 @@ public class Shoot extends CommandBase {
     public void execute() {
         pidController.setTolerance(TOLERANCE.get());
         pidController.setPID(kP.get(), kI.get(), kD.get());
+        feedForward.setGains(kS.get(), kV.get(), 0);
         shooter.setSpeed((pidController.calculate(shooter.getVelocity(),
                 rotationsPerSecond.get())) + feedForward.calculate(rotationsPerSecond.get()));
     }
