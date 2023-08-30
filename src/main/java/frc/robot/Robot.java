@@ -7,23 +7,28 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Shoot;
+import frc.robot.subsystems.Piston;
 import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
 
     private Shooter shooter;
+    private Piston piston;
 
     @Override
     public void robotInit() {
         shooter = Shooter.getInstance();
         shooter.resetEncoders();
         shooter.configureDashboard();
+        piston = Piston.getInstance();
+        piston.configureDashboard();
     }
 
     @Override
     public void robotPeriodic() {
         shooter.periodic();
         Shoot.periodic();
+        piston.periodic();
         CommandScheduler.getInstance().run();
     }
 
