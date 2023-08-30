@@ -31,10 +31,10 @@ public class Shooter extends SubsystemBase {
         this.motor = motor;
         motor.restoreFactoryDefaults();
         this.encoder = motor.getEncoder();
-        setEncoder();
+        setEncoderConversionFactors();
     }
 
-    public void setEncoder() {
+    private void setEncoderConversionFactors() {
         encoder.setPositionConversionFactor(GEAR_RATIO);
         encoder.setVelocityConversionFactor(VELOCITY_CONVERSION_FACTOR);
     }
