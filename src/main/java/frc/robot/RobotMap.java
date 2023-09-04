@@ -4,21 +4,12 @@ public class RobotMap {
 
     public interface CAN {
 
-    }
-    
-    public interface DIO {
-
-    }
-    
-    public interface PWM {
-
-    }
-    
-    public interface AIN {
-    
+        int SHOOTER_SPARK_MAX = 2;
     }
 
     public interface PCM {
 
+        int SOLENOID_FORWARD = 1;
+        int SOLENOID_BACKWARD = 0;
     }
 }

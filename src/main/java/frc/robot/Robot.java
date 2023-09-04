@@ -6,66 +6,73 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Shoot;
+import frc.robot.subsystems.Piston;
+import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
 
-  @Override
-  public void robotInit() {
+    private Shooter shooter;
+    private Piston piston;
 
-  }
+    @Override
+    public void robotInit() {
+        shooter = Shooter.getInstance();
+        shooter.resetEncoders();
+        shooter.configureDashboard();
+        piston = Piston.getInstance();
+        piston.configureDashboard();
+    }
 
-  @Override
-  public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
-  }
+    @Override
+    public void robotPeriodic() {
+        shooter.periodic();
+        Shoot.periodic();
+        piston.periodic();
+        CommandScheduler.getInstance().run();
+    }
 
-  @Override
-  public void disabledInit() {
+    @Override
+    public void disabledInit() {
+        CommandScheduler.getInstance().cancelAll();
+    }
 
-  }
+    @Override
+    public void disabledPeriodic() {
+    }
 
-  @Override
-  public void disabledPeriodic() {
+    @Override
+    public void autonomousInit() {
+        new Shoot(shooter).schedule();
+    }
 
-  }
+    @Override
+    public void autonomousPeriodic() {
+    }
 
-  @Override
-  public void autonomousInit() {
+    @Override
+    public void teleopInit() {
+    }
 
-  }
+    @Override
+    public void teleopPeriodic() {
 
-  @Override
-  public void autonomousPeriodic() {
+    }
 
-  }
+    @Override
+    public void testInit() {
+        CommandScheduler.getInstance().cancelAll();
+    }
 
-  @Override
-  public void teleopInit() {
+    @Override
+    public void testPeriodic() {
+    }
 
-  }
+    @Override
+    public void simulationInit() {
+    }
 
-  @Override
-  public void teleopPeriodic() {
-
-  }
-
-  @Override
-  public void testInit() {
-    CommandScheduler.getInstance().cancelAll();
-  }
-
-  @Override
-  public void testPeriodic() {
-
-  }
-
-  @Override
-  public void simulationInit() {
-
-  }
-
-  @Override
-  public void simulationPeriodic() {
-
-  }
+    @Override
+    public void simulationPeriodic() {
+    }
 }
