@@ -4,7 +4,7 @@ public class RobotMap {
 
     public interface CAN {
 
-        int SHOOTER_SPARK_MAX = -1;
+        int SHOOTER_SPARK_MAX = 2;
     }
 
     public interface PCM {
